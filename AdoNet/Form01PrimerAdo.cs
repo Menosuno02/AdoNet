@@ -72,12 +72,32 @@ namespace AdoNet
         {
             // Indicamos la conexión que utilizará el command
             this.com.Connection = this.cn;
-            // Creamos la consulta
+            // Creamos consulta
             string sql = "SELECT * FROM EMP";
             // Indicamos el tipo de consulta a ejecutar (texto, procedimiento almacenado, nombre tabla)
             this.com.CommandType = CommandType.Text;
             // Indicamos a command la consulta
             this.com.CommandText = sql;
+            // Aquí la conexión debe etar abierta. Ejecutamos la consulta de selección en el command
+            // Dicho método nos devuelve un objeto DataReader
+            this.reader = this.com.ExecuteReader();
+
+            // Leemos nombre columna
+            for (int i = 0; i < this.reader.FieldCount; i++)
+            {
+                string columna = this.reader.GetName(i);
+                string tipoDato = this.reader.GetDataTypeName(i);
+                this.lstColumnas.Items.Add(columna);
+                this.lstTiposDato.Items.Add(tipoDato);
+            }
+            // Leemos un registro
+            while (this.reader.Read())
+            {
+                string apellido = this.reader["APELLIDO"].ToString();
+                this.lstApellidos.Items.Add(apellido);
+            }
+            // Siempre cerrar reader tras leer
+            this.reader.Close();
         }
     }
 }
