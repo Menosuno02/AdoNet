@@ -24,6 +24,7 @@ namespace AdoNet
             this.connectionString = @"Data Source=LOCALHOST\SQLEXPRESS;Initial Catalog=HOSPITAL;Persist Security Info=True;User ID=sa;Password=MCSD2023";
             this.cn = new SqlConnection(connectionString);
             this.com = new SqlCommand();
+            this.com.Connection = this.cn;
             this.CargarDept();
         }
 
@@ -35,7 +36,6 @@ namespace AdoNet
                 string oficio = this.txtOficio.Text;
                 int salario = Convert.ToInt32(this.txtSalario.Text);
                 string sql = "UPDATE EMP SET OFICIO = @oficio, SALARIO = @salario WHERE APELLIDO = @emple";
-                this.com.Connection = this.cn;
                 this.com.CommandType = CommandType.Text;
                 this.com.CommandText = sql;
                 this.com.Parameters.Add(new SqlParameter("@oficio", oficio));
@@ -51,8 +51,7 @@ namespace AdoNet
         private void CargarDept()
         {
             this.lstDept.Items.Clear();
-            string sql = "SELECT * FROM DEPT";
-            this.com.Connection = this.cn;
+            string sql = "SELECT DNOMBRE FROM DEPT";
             this.com.CommandType = CommandType.Text;
             this.com.CommandText = sql;
             this.cn.Open();
@@ -72,8 +71,7 @@ namespace AdoNet
             {
                 this.lstEmple.Items.Clear();
                 string dept = this.lstDept.SelectedItem.ToString();
-                string sql = "SELECT * FROM EMP WHERE DEPT_NO = (SELECT DEPT_NO FROM DEPT WHERE DNOMBRE = @dnombre)";
-                this.com.Connection = this.cn;
+                string sql = "SELECT APELLIDO FROM EMP E INNER JOIN DEPT D ON D.DEPT_NO = E.DEPT_NO WHERE D.DNOMBRE = @dnombre";
                 this.com.CommandType = CommandType.Text;
                 this.com.CommandText = sql;
                 SqlParameter paramDept = new SqlParameter("@dnombre", dept);
@@ -96,7 +94,7 @@ namespace AdoNet
             if (this.lstEmple.SelectedIndex != -1)
             {
                 string emple = this.lstEmple.SelectedItem.ToString();
-                string sql = "SELECT * FROM EMP WHERE APELLIDO = @emple";
+                string sql = "SELECT OFICIO, SALARIO FROM EMP WHERE APELLIDO = @emple";
                 this.com.Connection = this.cn;
                 this.com.CommandType = CommandType.Text;
                 this.com.CommandText = sql;
@@ -104,11 +102,9 @@ namespace AdoNet
                 this.com.Parameters.Add(paramEmple);
                 this.cn.Open();
                 this.reader = this.com.ExecuteReader();
-                while (this.reader.Read())
-                {
-                    this.txtOficio.Text = this.reader["OFICIO"].ToString();
-                    this.txtSalario.Text = this.reader["SALARIO"].ToString();
-                }
+                this.reader.Read();
+                this.txtOficio.Text = this.reader["OFICIO"].ToString();
+                this.txtSalario.Text = this.reader["SALARIO"].ToString();
                 this.com.Parameters.Clear();
                 this.reader.Close();
                 this.cn.Close();
