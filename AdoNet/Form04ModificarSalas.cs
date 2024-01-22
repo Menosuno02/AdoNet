@@ -21,7 +21,7 @@ namespace AdoNet
         public Form04ModificarSalas()
         {
             InitializeComponent();
-            connectionString = "Data Source=LOCALHOST\\SQLEXPRESS;Initial Catalog=HOSPITAL;Persist Security Info=True;User ID=sa;Password=MCSD2023";
+            connectionString = @"Data Source=LOCALHOST\SQLEXPRESS;Initial Catalog=HOSPITAL;Persist Security Info=True;User ID=sa;Password=MCSD2023";
             this.cn = new SqlConnection(connectionString);
             this.com = new SqlCommand();
             this.CargarSalas();
