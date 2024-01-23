@@ -72,7 +72,7 @@ namespace AdoNet.Repositories
 
         public int InsertarDepartamento(int id, string nombre, string localidad)
         {
-            string sql = "INSERT INTO DEPT VALUES(@id, @nombre, @localidad)";
+            string sql = "INSERT INTO DEPT VALUES(@id, @nombre, @loc)";
             SqlParameter paramId = new SqlParameter("@id", id);
             SqlParameter paramNom = new SqlParameter("@nombre", nombre);
             SqlParameter paramLoc = new SqlParameter("@loc", localidad);
@@ -83,6 +83,41 @@ namespace AdoNet.Repositories
             this.com.CommandText = sql;
             this.cn.Open();
             int results = this.com.ExecuteNonQuery();
+            this.cn.Close();
+            this.com.Parameters.Clear();
+            return results;
+        }
+
+        public int UpdateDepartamento(int id, string nombre, string localidad)
+        {
+            string sql = "UPDATE DEPT SET DNOMBRE = @nombre, LOC = @loc WHERE DEPT_NO = @id";
+            SqlParameter paramId = new SqlParameter("@id", id);
+            SqlParameter paramNombre = new SqlParameter("@nombre", nombre);
+            SqlParameter paramLoc = new SqlParameter("@loc", localidad);
+            this.com.Parameters.Add(paramId);
+            this.com.Parameters.Add(paramNombre);
+            this.com.Parameters.Add(paramLoc);
+            this.com.CommandType = CommandType.Text;
+            this.com.CommandText = sql;
+            this.cn.Open();
+            int resultados = this.com.ExecuteNonQuery();
+            this.cn.Close();
+            this.com.Parameters.Clear();
+            return resultados;
+        }
+
+        public int DeleteDepartamento(int id)
+        {
+            string sql = "DELETE FROM DEPT WHERE DEPT_NO = @id";
+            SqlParameter paramId = new SqlParameter("@id", id);
+            this.com.Parameters.Add(paramId);
+            this.com.CommandType = CommandType.Text;
+            this.com.CommandText = sql;
+            this.cn.Open();
+            int resultados = this.com.ExecuteNonQuery();
+            this.cn.Close();
+            this.com.Parameters.Clear();
+            return resultados;
         }
     }
 }

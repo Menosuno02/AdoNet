@@ -37,6 +37,8 @@
             label4 = new Label();
             txtLoc = new TextBox();
             btnInsertar = new Button();
+            btnUpdate = new Button();
+            btnEliminar = new Button();
             SuspendLayout();
             // 
             // label1
@@ -54,7 +56,7 @@
             lstDept.ItemHeight = 15;
             lstDept.Location = new Point(12, 27);
             lstDept.Name = "lstDept";
-            lstDept.Size = new Size(203, 184);
+            lstDept.Size = new Size(203, 244);
             lstDept.TabIndex = 1;
             lstDept.SelectedIndexChanged += lstDept_SelectedIndexChanged;
             // 
@@ -77,7 +79,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(236, 71);
+            label3.Location = new Point(236, 64);
             label3.Name = "label3";
             label3.Size = new Size(51, 15);
             label3.TabIndex = 4;
@@ -85,7 +87,7 @@
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(236, 89);
+            txtNombre.Location = new Point(236, 82);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(100, 23);
             txtNombre.TabIndex = 5;
@@ -93,7 +95,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(236, 128);
+            label4.Location = new Point(236, 124);
             label4.Name = "label4";
             label4.Size = new Size(58, 15);
             label4.TabIndex = 6;
@@ -101,14 +103,14 @@
             // 
             // txtLoc
             // 
-            txtLoc.Location = new Point(236, 146);
+            txtLoc.Location = new Point(236, 142);
             txtLoc.Name = "txtLoc";
             txtLoc.Size = new Size(100, 23);
             txtLoc.TabIndex = 7;
             // 
             // btnInsertar
             // 
-            btnInsertar.Location = new Point(236, 188);
+            btnInsertar.Location = new Point(236, 190);
             btnInsertar.Name = "btnInsertar";
             btnInsertar.Size = new Size(100, 23);
             btnInsertar.TabIndex = 8;
@@ -116,11 +118,33 @@
             btnInsertar.UseVisualStyleBackColor = true;
             btnInsertar.Click += btnInsertar_Click;
             // 
+            // btnUpdate
+            // 
+            btnUpdate.Location = new Point(236, 219);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new Size(100, 23);
+            btnUpdate.TabIndex = 9;
+            btnUpdate.Text = "Modificar";
+            btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Click += btnUpdate_Click;
+            // 
+            // btnEliminar
+            // 
+            btnEliminar.Location = new Point(236, 248);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(100, 23);
+            btnEliminar.TabIndex = 10;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
+            // 
             // Form06DepartamentosClases
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(350, 226);
+            ClientSize = new Size(350, 285);
+            Controls.Add(btnEliminar);
+            Controls.Add(btnUpdate);
             Controls.Add(btnInsertar);
             Controls.Add(txtLoc);
             Controls.Add(label4);
@@ -147,5 +171,7 @@
         private Label label4;
         private TextBox txtLoc;
         private Button btnInsertar;
+        private Button btnUpdate;
+        private Button btnEliminar;
     }
 }

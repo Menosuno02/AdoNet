@@ -59,5 +59,30 @@ namespace AdoNet
             this.LoadDepartamentos();
             MessageBox.Show("Departamentos insertados: " + insertados);
         }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse(this.txtId.Text);
+            string nombre = this.txtNombre.Text;
+            string localidad = this.txtLoc.Text;
+            int modificados = this.repo.UpdateDepartamento(id, nombre, localidad);
+            this.LoadDepartamentos();
+            MessageBox.Show("Departamentos modificados: " + modificados);
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            int index = this.lstDept.SelectedIndex;
+            if (index != -1)
+            {
+                int id = this.idsDepartamentoList[index];
+                int borrados = this.repo.DeleteDepartamento(id);
+                this.LoadDepartamentos();
+                this.txtId.Clear();
+                this.txtNombre.Clear();
+                this.txtLoc.Clear();
+                MessageBox.Show("Departamentos eliminados: " + borrados);
+            }
+        }
     }
 }
