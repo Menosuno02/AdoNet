@@ -17,6 +17,7 @@ namespace AdoNet
         private SqlConnection cn;
         private SqlCommand com;
         private SqlDataReader reader;
+        private List<int> idsDepartamentosList;
 
         public Form05DepartamentosEmpleados()
         {
@@ -25,6 +26,7 @@ namespace AdoNet
             this.cn = new SqlConnection(connectionString);
             this.com = new SqlCommand();
             this.com.Connection = this.cn;
+            this.idsDepartamentosList = new List<int>();
             this.CargarDept();
         }
 
