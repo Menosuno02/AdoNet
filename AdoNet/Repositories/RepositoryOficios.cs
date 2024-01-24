@@ -61,20 +61,24 @@ namespace AdoNet.Repositories
             return empleados;
         }
 
-        public int GetSumSalarioOficio(string oficio)
+        public DatosEmpleadosOficio GetDatosEmpleadosOficio(string oficio)
         {
-            string sql = "SELECT SUM(SALARIO) AS SUMA, OFICIO FROM EMP GROUP BY OFICIO HAVING OFICIO = @oficio";
+            string sql = "SELECT SUM(SALARIO) AS SUMA, AVG(SALARIO) AS MEDIA, MIN(SALARIO) AS MINIMO, OFICIO " +
+                "FROM EMP GROUP BY OFICIO HAVING OFICIO = @oficio";
             this.com.CommandType = CommandType.Text;
             this.com.CommandText = sql;
             this.com.Parameters.Add(new SqlParameter("@oficio", oficio));
             this.cn.Open();
             this.reader = this.com.ExecuteReader();
             this.reader.Read();
-            int sumSalarios = int.Parse(this.reader["SUMA"].ToString());
+            DatosEmpleadosOficio datos = new DatosEmpleadosOficio();
+            datos.SumaSalarial = int.Parse(this.reader["SUMA"].ToString());
+            datos.MediaSalarial = int.Parse(this.reader["MEDIA"].ToString());
+            datos.MinimoSalario = int.Parse(this.reader["MINIMO"].ToString());
             this.reader.Close();
             this.cn.Close();
             this.com.Parameters.Clear();
-            return sumSalarios;
+            return datos;
         }
 
         public int IncrementarSalariosOficio(string oficio, int incremento)

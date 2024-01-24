@@ -35,7 +35,10 @@ namespace AdoNet
                 {
                     this.lstApellidos.Items.Add(empleado);
                 }
-                this.txtSuma.Text = repo.GetSumSalarioOficio(oficio).ToString();
+                DatosEmpleadosOficio datos = repo.GetDatosEmpleadosOficio(oficio);
+                this.txtSuma.Text = datos.SumaSalarial.ToString();
+                this.txtMedia.Text = datos.MediaSalarial.ToString();
+                this.txtMin.Text = datos.MinimoSalario.ToString();
             }
         }
 
@@ -56,7 +59,10 @@ namespace AdoNet
                 string oficio = this.lstOficios.SelectedItem.ToString();
                 int incremento = int.Parse(this.txtIncremento.Text);
                 int filas = this.repo.IncrementarSalariosOficio(oficio, incremento);
-                this.txtSuma.Text = repo.GetSumSalarioOficio(oficio).ToString();
+                DatosEmpleadosOficio datos = repo.GetDatosEmpleadosOficio(oficio);
+                this.txtSuma.Text = datos.SumaSalarial.ToString();
+                this.txtMedia.Text = datos.MediaSalarial.ToString();
+                this.txtMin.Text = datos.MinimoSalario.ToString();
                 MessageBox.Show("Salario de " + filas + " empleados incrementado en " + incremento);
             }
         }
