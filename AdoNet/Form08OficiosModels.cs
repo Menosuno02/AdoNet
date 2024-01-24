@@ -26,15 +26,14 @@ namespace AdoNet
 
         private void lstOficios_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int index = this.lstOficios.SelectedIndex;
-            if (index != -1)
+            if (this.lstOficios.SelectedIndex != -1)
             {
                 this.lstApellidos.Items.Clear();
                 string oficio = this.lstOficios.SelectedItem.ToString();
-                List<Empleado> empleados = this.repo.GetEmpleadosPorOficio(oficio);
-                foreach (Empleado empleado in empleados)
+                List<string> empleados = this.repo.GetEmpleadosPorOficio(oficio);
+                foreach (string empleado in empleados)
                 {
-                    this.lstApellidos.Items.Add(empleado.Apellido);
+                    this.lstApellidos.Items.Add(empleado);
                 }
                 this.txtSuma.Text = repo.GetSumSalarioOficio(oficio).ToString();
             }
@@ -52,14 +51,13 @@ namespace AdoNet
 
         private void btnIncrementar_Click(object sender, EventArgs e)
         {
-            int index = this.lstOficios.SelectedIndex;
-            if (index != -1)
+            if (this.lstOficios.SelectedIndex != -1)
             {
                 string oficio = this.lstOficios.SelectedItem.ToString();
                 int incremento = int.Parse(this.txtIncremento.Text);
                 int filas = this.repo.IncrementarSalariosOficio(oficio, incremento);
                 this.txtSuma.Text = repo.GetSumSalarioOficio(oficio).ToString();
-                MessageBox.Show("Salarios de " + filas + " empleados incrementado en " + incremento);
+                MessageBox.Show("Salario de " + filas + " empleados incrementado en " + incremento);
             }
         }
     }

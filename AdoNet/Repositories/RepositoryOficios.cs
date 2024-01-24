@@ -41,26 +41,19 @@ namespace AdoNet.Repositories
             return oficios;
         }
 
-        public List<Empleado> GetEmpleadosPorOficio(string oficio)
+        public List<string> GetEmpleadosPorOficio(string oficio)
         {
-            string sql = "SELECT * FROM EMP WHERE OFICIO = @oficio";
+            string sql = "SELECT APELLIDO FROM EMP WHERE OFICIO = @oficio";
             this.com.CommandType = CommandType.Text;
             this.com.CommandText = sql;
             this.com.Parameters.Add(new SqlParameter("@oficio", oficio));
             this.cn.Open();
             this.reader = this.com.ExecuteReader();
-            List<Empleado> empleados = new List<Empleado>();
+            List<string> empleados = new List<string>();
             while (this.reader.Read())
             {
-                int empNo = int.Parse(this.reader["EMP_NO"].ToString());
                 string apellido = this.reader["APELLIDO"].ToString();
-                string of = this.reader["OFICIO"].ToString();
-                string dir = this.reader["DIR"].ToString();
-                DateTime fechaAlta = DateTime.Parse(this.reader["FECHA_ALT"].ToString());
-                int salario = int.Parse(this.reader["SALARIO"].ToString());
-                int comision = int.Parse(this.reader["COMISION"].ToString());
-                int deptNo = int.Parse(this.reader["DEPT_NO"].ToString());
-                empleados.Add(new Empleado(empNo, apellido, oficio, dir, fechaAlta, salario, comision, deptNo));
+                empleados.Add(apellido);
             }
             this.reader.Close();
             this.cn.Close();
@@ -70,7 +63,7 @@ namespace AdoNet.Repositories
 
         public int GetSumSalarioOficio(string oficio)
         {
-            string sql = "SELECT SUM(SALARIO) AS SUMA FROM EMP WHERE OFICIO = @oficio";
+            string sql = "SELECT SUM(SALARIO) AS SUMA, OFICIO FROM EMP GROUP BY OFICIO HAVING OFICIO = @oficio";
             this.com.CommandType = CommandType.Text;
             this.com.CommandText = sql;
             this.com.Parameters.Add(new SqlParameter("@oficio", oficio));
