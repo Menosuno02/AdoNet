@@ -21,8 +21,16 @@ GO
 CREATE OR ALTER PROCEDURE SP_INSERT_DEPARTAMENTO
 (@DEPT_NO INT, @DNOMBRE NVARCHAR(50), @LOC NVARCHAR(50))
 AS
-	INSERT INTO DEPT
-	VALUES(@DEPT_NO, @DNOMBRE, @LOC)
+	--	NO QUEREMOS LOCALIDADES DE TERUEL
+	IF (@LOC = 'TERUEL')
+	BEGIN
+		PRINT 'TERUEL NO EXISTE'
+	END
+	ELSE
+	BEGIN
+		INSERT INTO DEPT
+		VALUES(@DEPT_NO, @DNOMBRE, @LOC)
+	END
 GO
 */
 
@@ -43,7 +51,14 @@ namespace AdoNet
             this.cn = new SqlConnection(connectionString);
             this.com = new SqlCommand();
             this.com.Connection = this.cn;
+            // Creamos un evento para capturar los mensajes del server
+            this.cn.InfoMessage += Cn_InfoMessage;
             this.CargarDept();
+        }
+
+        private void Cn_InfoMessage(object sender, SqlInfoMessageEventArgs e)
+        {
+            this.lblMensajesServidor.Text = e.Message;
         }
 
         private void CargarDept()
@@ -66,6 +81,7 @@ namespace AdoNet
 
         private void btnInsertar_Click(object sender, EventArgs e)
         {
+            this.lblMensajesServidor.Text = "";
             int dept_no = int.Parse(this.txtNumero.Text);
             string dnombre = this.txtNombre.Text;
             string loc = this.txtLocalidad.Text;
@@ -80,7 +96,7 @@ namespace AdoNet
             this.reader.Close();
             this.cn.Close();
             this.CargarDept();
-            this.lblMensajesServidor.Text = "Dept insertados: " + numDept.ToString();
+            MessageBox.Show("Dept insertados: " + numDept.ToString());
         }
     }
 }

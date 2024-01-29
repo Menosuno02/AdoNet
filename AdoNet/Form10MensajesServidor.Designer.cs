@@ -102,7 +102,7 @@
             // 
             lblMensajesServidor.AutoSize = true;
             lblMensajesServidor.ForeColor = SystemColors.HotTrack;
-            lblMensajesServidor.Location = new Point(12, 249);
+            lblMensajesServidor.Location = new Point(12, 243);
             lblMensajesServidor.Name = "lblMensajesServidor";
             lblMensajesServidor.Size = new Size(112, 15);
             lblMensajesServidor.TabIndex = 7;
@@ -121,7 +121,6 @@
             // 
             lstDepartamentos.FormattingEnabled = true;
             lstDepartamentos.ItemHeight = 15;
-            lstDepartamentos.Items.AddRange(new object[] { "10 - CONTABILIDAD - ELCHE", "20 - INVESTIGACION - MADRID", "30 - VENTAS - BARCELONA", "40 - PRODUCCION - SALAMANCA" });
             lstDepartamentos.Location = new Point(175, 27);
             lstDepartamentos.Name = "lstDepartamentos";
             lstDepartamentos.Size = new Size(224, 199);
@@ -131,7 +130,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(411, 280);
+            ClientSize = new Size(411, 267);
             Controls.Add(lstDepartamentos);
             Controls.Add(label4);
             Controls.Add(lblMensajesServidor);
