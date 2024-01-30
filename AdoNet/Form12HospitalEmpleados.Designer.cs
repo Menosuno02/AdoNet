@@ -61,7 +61,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 68);
+            label2.Location = new Point(12, 63);
             label2.Name = "label2";
             label2.Size = new Size(37, 15);
             label2.TabIndex = 2;
@@ -69,7 +69,7 @@
             // 
             // txtSuma
             // 
-            txtSuma.Location = new Point(12, 86);
+            txtSuma.Location = new Point(12, 81);
             txtSuma.Name = "txtSuma";
             txtSuma.Size = new Size(121, 23);
             txtSuma.TabIndex = 3;
@@ -77,7 +77,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(12, 131);
+            label3.Location = new Point(12, 116);
             label3.Name = "label3";
             label3.Size = new Size(40, 15);
             label3.TabIndex = 4;
@@ -85,7 +85,7 @@
             // 
             // txtMedia
             // 
-            txtMedia.Location = new Point(12, 149);
+            txtMedia.Location = new Point(12, 134);
             txtMedia.Name = "txtMedia";
             txtMedia.Size = new Size(121, 23);
             txtMedia.TabIndex = 5;
@@ -93,7 +93,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(12, 196);
+            label4.Location = new Point(12, 169);
             label4.Name = "label4";
             label4.Size = new Size(65, 15);
             label4.TabIndex = 6;
@@ -101,7 +101,7 @@
             // 
             // txtEmpleados
             // 
-            txtEmpleados.Location = new Point(12, 214);
+            txtEmpleados.Location = new Point(12, 187);
             txtEmpleados.Name = "txtEmpleados";
             txtEmpleados.Size = new Size(121, 23);
             txtEmpleados.TabIndex = 7;
@@ -109,7 +109,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(182, 9);
+            label5.Location = new Point(154, 9);
             label5.Name = "label5";
             label5.Size = new Size(65, 15);
             label5.TabIndex = 8;
@@ -119,16 +119,16 @@
             // 
             lstEmpleados.FormattingEnabled = true;
             lstEmpleados.ItemHeight = 15;
-            lstEmpleados.Location = new Point(182, 27);
+            lstEmpleados.Location = new Point(154, 27);
             lstEmpleados.Name = "lstEmpleados";
-            lstEmpleados.Size = new Size(180, 214);
+            lstEmpleados.Size = new Size(180, 184);
             lstEmpleados.TabIndex = 9;
             // 
             // Form12HospitalEmpleados
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(375, 257);
+            ClientSize = new Size(349, 226);
             Controls.Add(lstEmpleados);
             Controls.Add(label5);
             Controls.Add(txtEmpleados);
