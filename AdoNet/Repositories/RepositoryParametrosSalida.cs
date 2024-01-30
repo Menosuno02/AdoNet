@@ -77,7 +77,7 @@ namespace AdoNet.Repositories
              * resumen.SumaSalarial = suma;
              * resumen.MediaSalarial = media;
              * resumen.Personas = personas;
-             */
+
             if (resumen.Apellidos.Count != 0)
             {
                 // Capturar parámetros tras cerrar el reader
@@ -85,6 +85,11 @@ namespace AdoNet.Repositories
                 resumen.MediaSalarial = int.Parse(paramMedia.Value.ToString());
                 resumen.Personas = int.Parse(paramPersonas.Value.ToString());
             }
+            */
+
+            resumen.SumaSalarial = int.Parse(paramSuma.Value.ToString());
+            resumen.MediaSalarial = int.Parse(paramMedia.Value.ToString());
+            resumen.Personas = int.Parse(paramPersonas.Value.ToString());
             this.cn.Close();
             this.com.Parameters.Clear();
             return resumen;
