@@ -66,6 +66,7 @@
             btnMostrarDatos.TabIndex = 2;
             btnMostrarDatos.Text = "Mostrar datos";
             btnMostrarDatos.UseVisualStyleBackColor = true;
+            btnMostrarDatos.Click += btnMostrarDatos_Click;
             // 
             // label2
             // 
