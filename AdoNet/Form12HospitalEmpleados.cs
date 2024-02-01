@@ -34,13 +34,24 @@ namespace AdoNet
                 string nomHospital = this.cmbHospitales.SelectedItem.ToString();
                 DatosHospital datosHospital = this.repo.GetDatosHospital(nomHospital);
                 this.lstEmpleados.Items.Clear();
-                foreach (string emple in datosHospital.DatosEmpleados)
+                foreach (EmpleadoHospital emple in datosHospital.DatosEmpleados)
                 {
                     this.lstEmpleados.Items.Add(emple);
                 }
                 this.txtSuma.Text = datosHospital.SumaSalarial.ToString();
                 this.txtMedia.Text = datosHospital.MediaSalarial.ToString();
                 this.txtEmpleados.Text = datosHospital.Empleados.ToString();
+            }
+        }
+
+        private void lstEmpleados_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = lstEmpleados.SelectedIndex;
+            if (index != -1)
+            {
+                EmpleadoHospital emple = (EmpleadoHospital)this.lstEmpleados.SelectedItem;
+                this.txtSalario.Text = emple.Salario.ToString();
+                this.txtOficio.Text = emple.Oficio.ToString();
             }
         }
     }

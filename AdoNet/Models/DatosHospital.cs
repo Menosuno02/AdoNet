@@ -10,13 +10,13 @@ namespace AdoNet.Models
     {
         public DatosHospital()
         {
-            DatosEmpleados = new List<string>();
+            DatosEmpleados = new List<EmpleadoHospital>();
             SumaSalarial = 0;
             MediaSalarial = 0;
             Empleados = 0;
         }
 
-        public List<string> DatosEmpleados { get; set; }
+        public List<EmpleadoHospital> DatosEmpleados { get; set; }
 
         public int SumaSalarial { get; set; }
 

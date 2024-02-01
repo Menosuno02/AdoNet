@@ -20,14 +20,14 @@ GO
 
 CREATE OR ALTER VIEW V_DOCTORES_PLANTILLA
 AS
-	SELECT APELLIDO, SALARIO, HOSPITAL_COD
+	SELECT EMPLEADO_NO AS IDEMPLEADO, APELLIDO, SALARIO, HOSPITAL_COD, FUNCION AS OFICIO
 	FROM PLANTILLA
 	UNION
-	SELECT APELLIDO, SALARIO, HOSPITAL_COD
+	SELECT DOCTOR_NO, APELLIDO, SALARIO, HOSPITAL_COD, ESPECIALIDAD
 	FROM DOCTOR
 GO
 
-SELECT APELLIDO, SALARIO
+SELECT *
 FROM V_DOCTORES_PLANTILLA
 WHERE HOSPITAL_COD = 17
 
@@ -39,7 +39,7 @@ AS
 	FROM HOSPITAL
 	WHERE NOMBRE = @NOMBRE_HOSP
 
-	SELECT APELLIDO, SALARIO
+	SELECT *
 	FROM V_DOCTORES_PLANTILLA
 	WHERE HOSPITAL_COD = @IDHOSPITAL;
 
@@ -103,7 +103,12 @@ namespace AdoNet.Repositories
             DatosHospital datosHospital = new DatosHospital();
             while (this.reader.Read())
             {
-                datosHospital.DatosEmpleados.Add(this.reader["APELLIDO"].ToString() + " - " + this.reader["SALARIO"].ToString());
+                EmpleadoHospital empleado = new EmpleadoHospital();
+                empleado.ID = int.Parse(this.reader["IDEMPLEADO"].ToString());
+                empleado.Apellido = this.reader["APELLIDO"].ToString();
+                empleado.Salario = int.Parse(this.reader["SALARIO"].ToString());
+                empleado.Oficio = this.reader["OFICIO"].ToString();
+                datosHospital.DatosEmpleados.Add(empleado);
             }
             this.reader.Close();
             datosHospital.SumaSalarial = int.Parse(paramSuma.Value.ToString());

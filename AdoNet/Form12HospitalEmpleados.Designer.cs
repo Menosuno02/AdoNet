@@ -38,6 +38,10 @@
             txtEmpleados = new TextBox();
             label5 = new Label();
             lstEmpleados = new ListBox();
+            label6 = new Label();
+            txtSalario = new TextBox();
+            label7 = new Label();
+            txtOficio = new TextBox();
             SuspendLayout();
             // 
             // label1
@@ -123,12 +127,49 @@
             lstEmpleados.Name = "lstEmpleados";
             lstEmpleados.Size = new Size(180, 184);
             lstEmpleados.TabIndex = 9;
+            lstEmpleados.SelectedIndexChanged += lstEmpleados_SelectedIndexChanged;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(354, 27);
+            label6.Name = "label6";
+            label6.Size = new Size(42, 15);
+            label6.TabIndex = 10;
+            label6.Text = "Salario";
+            // 
+            // txtSalario
+            // 
+            txtSalario.Location = new Point(354, 45);
+            txtSalario.Name = "txtSalario";
+            txtSalario.Size = new Size(100, 23);
+            txtSalario.TabIndex = 11;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(354, 81);
+            label7.Name = "label7";
+            label7.Size = new Size(39, 15);
+            label7.TabIndex = 12;
+            label7.Text = "Oficio";
+            // 
+            // txtOficio
+            // 
+            txtOficio.Location = new Point(354, 99);
+            txtOficio.Name = "txtOficio";
+            txtOficio.Size = new Size(100, 23);
+            txtOficio.TabIndex = 13;
             // 
             // Form12HospitalEmpleados
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(349, 226);
+            ClientSize = new Size(476, 226);
+            Controls.Add(txtOficio);
+            Controls.Add(label7);
+            Controls.Add(txtSalario);
+            Controls.Add(label6);
             Controls.Add(lstEmpleados);
             Controls.Add(label5);
             Controls.Add(txtEmpleados);
@@ -157,5 +198,9 @@
         private TextBox txtEmpleados;
         private Label label5;
         private ListBox lstEmpleados;
+        private Label label6;
+        private TextBox txtSalario;
+        private Label label7;
+        private TextBox txtOficio;
     }
 }
